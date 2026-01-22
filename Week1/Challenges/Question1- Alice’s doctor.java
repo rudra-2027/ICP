@@ -62,16 +62,15 @@ public class Question1 {
         int ans = maxCandies(candyType);
         System.out.println(ans);
     }
-
     private static int maxCandies(int[] candyType) {
         HashMap<Integer,Integer> hm = new HashMap<>();
         for(int i : candyType){
             hm.put(i,hm.getOrDefault(i,0)+1);
         }
-        int n = candyType.length;
-        int type = n/2;
-        int uniqueTypes = hm.size();
-        return Math.min(uniqueTypes,type);
+        int n=candyType.length;
+        int type=n/2;
+        int unique = hm.size();
+        return Math.min(unique,type);
 
     }
 
