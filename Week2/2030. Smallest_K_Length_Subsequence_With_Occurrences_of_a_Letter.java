@@ -43,4 +43,42 @@ class Solution {
     }
 }
 
+//Optimal Approach --> Stack+Greedy
+class Solution {
+    public String smallestSubsequence(String s, int k, char letter, int repetition) {
+        int freq =  0;
+        for(char c  : s.toCharArray()){
+            if(c==letter){
+                freq++;
+            }
+        }
+        Stack<Character> st = new Stack<>();
+        for(int i = 0;i<s.length();i++){
+            char c = s.charAt(i);
+            while(!st.isEmpty() &&
+                    (st.peek()>c) &&
+                    (s.length()-i+st.size()-1>=k) &&
+                    (st.peek() != letter || freq>repetition)){
+                        if(st.pop()== letter) repetition++;
+            }
+            if(st.size()<k){
+                if(c==letter){
+                    st.push(c);
+                    repetition--;
+                }else if (k-st.size()>repetition){
+                    st.push(c);
+                }
 
+            }
+            if(c==letter){
+                freq--;
+            }
+                    
+        }
+        StringBuilder sb = new StringBuilder();
+        while(!st.isEmpty()){
+            sb.append(st.pop());
+        }
+        return sb.reverse().toString();
+    }
+}
