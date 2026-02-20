@@ -13,3 +13,15 @@ class Solution {
 
     }
 }   
+// /------------------------------------
+    // Another approach
+class Solution {
+    public int minIncrements(int n, int[] cost) {
+        int mov =0;
+        for(int i=n/2-1;i>=0;i--){
+            mov+=Math.abs(cost[2*i+1]-cost[2*i+2]);
+            cost[i]+=Math.max(cost[2*i+1],cost[2*i+2]);
+        }
+        return mov;
+    }
+}
